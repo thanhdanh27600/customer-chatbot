@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import OpenAI from "openai";
-import {config} from "../../config";
-import {BotConfig, ChatMessage, ServiceDescription} from "../../types";
+import {config} from "../utils/config";
+import {BotConfig, ChatMessage, ServiceDescription} from "../utils/types";
 import {
 	detectScenarioType,
 	getEnhancedSystemPrompt,
@@ -54,13 +54,13 @@ export function prepareServicesContext(services: ServiceDescription[]): string {
 		context += `DESCRIPTION: ${service.description}\n`;
 
 		context += "FEATURES:\n";
-		service.features.forEach((feature) => {
+		service.features.forEach((feature: string) => {
 			context += `- ${feature}\n`;
 		});
 
 		if (service.commonIssues && service.commonIssues.length > 0) {
 			context += "COMMON ISSUES AND SOLUTIONS:\n";
-			service.commonIssues.forEach((issue) => {
+			service.commonIssues.forEach((issue: string) => {
 				context += `- ${issue}\n`;
 			});
 		}
