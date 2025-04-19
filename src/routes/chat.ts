@@ -1,7 +1,7 @@
 import {Request, Response, Router} from "express";
-import {servicesContext} from "../services/chat/context";
-import {botConfig, chat} from "../services/chat/root";
-import {ChatMessage} from "../types";
+import {servicesContext} from "../services/context";
+import {botConfig, chat} from "../services/root";
+import {ChatMessage} from "../utils/types";
 
 const router = Router();
 

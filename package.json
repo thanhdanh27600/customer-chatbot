@@ -3,11 +3,18 @@
 	"version": "1.0.0",
 	"scripts": {
 		"cli": "tsx src/cli.ts",
-		"build": "tsc && cp src/services/chat/services.json dist/services/chat/services.json",
+		"build": "tsc && cp src/services/services.json dist/services/services.json",
 		"start": "node dist/index.js",
 		"dev": "nodemon --exec tsx src/index.ts"
 	},
-	"keywords": [],
+	"keywords": [
+		"typescript",
+		"node",
+		"express",
+		"openai",
+		"chatbot",
+		"customer-service"
+	],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {

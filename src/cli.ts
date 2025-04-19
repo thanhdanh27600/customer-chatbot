@@ -1,7 +1,7 @@
 import * as readline from "readline";
-import {servicesContext} from "./services/chat/context";
-import {botConfig, chat} from "./services/chat/root";
-import {ChatMessage} from "./types";
+import {servicesContext} from "./services/context";
+import {botConfig, chat} from "./services/root";
+import {ChatMessage} from "./utils/types";
 
 // Main function to run the customer support bot
 async function main() {

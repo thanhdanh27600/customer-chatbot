@@ -1,6 +1,6 @@
 import express from "express";
-import {config} from "./config";
 import chatRoutes from "./routes/chat";
+import {config} from "./utils/config";
 
 const app = express();
 
