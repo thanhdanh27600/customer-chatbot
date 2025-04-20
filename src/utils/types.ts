@@ -1,3 +1,5 @@
+import OpenAI from "openai";
+
 export interface ServiceDescription {
 	id: string;
 	name: string;
@@ -7,10 +9,7 @@ export interface ServiceDescription {
 	pricing?: string;
 }
 
-export interface ChatMessage {
-	role: "system" | "user" | "assistant";
-	content: string;
-}
+export type ChatMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam;
 
 export interface BotConfig {
 	systemPrompt: string;

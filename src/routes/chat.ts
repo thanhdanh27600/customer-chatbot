@@ -1,6 +1,7 @@
 import {Request, Response, Router} from "express";
 import {servicesContext} from "../services/context";
-import {botConfig, chat} from "../services/root";
+import {chat} from "../services/root";
+import {botConfig} from "../utils/config";
 import {ChatMessage} from "../utils/types";
 
 const router = Router();
@@ -36,7 +37,10 @@ router.post("/", async (req: Request, res: Response) => {
 		);
 
 		// Add AI response to history
-		conversationHistory.push({role: "assistant", content: response});
+		conversationHistory.push({
+			role: "assistant",
+			content: response,
+		});
 
 		// Manage conversation history length (keep it within token limits)
 		if (conversationHistory.length > 10) {

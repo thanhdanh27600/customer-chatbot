@@ -1,6 +1,7 @@
 import * as readline from "readline";
 import {servicesContext} from "./services/context";
-import {botConfig, chat} from "./services/root";
+import {chat} from "./services/root";
+import {botConfig} from "./utils/config";
 import {ChatMessage} from "./utils/types";
 
 // Main function to run the customer support bot
@@ -42,7 +43,10 @@ async function main() {
 			);
 
 			// Add AI response to history
-			conversationHistory.push({role: "assistant", content: response});
+			conversationHistory.push({
+				role: "assistant",
+				content: response,
+			});
 
 			// Display response
 			console.log(`Support Agent: ${response}\n`);

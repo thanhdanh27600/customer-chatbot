@@ -1,7 +1,7 @@
-import * as fs from "fs";
 import OpenAI from "openai";
-import {config} from "../utils/config";
-import {BotConfig, ChatMessage, ServiceDescription} from "../utils/types";
+import {botConfig, config} from "../utils/config";
+import {executeFunction, functions} from "../utils/functions";
+import {ChatMessage} from "../utils/types";
 import {
 	detectScenarioType,
 	getEnhancedSystemPrompt,
@@ -12,68 +12,6 @@ const openai = new OpenAI({
 	baseURL: config.openaiBaseUrl,
 	apiKey: config.openaiApiKey,
 });
-
-export const botConfig: BotConfig = {
-	systemPrompt: `You are a helpful customer support agent for our company. 
-Your goal is to provide clear, concise, and accurate information about our services and help customers with their issues.
-
-When responding to customers:
-1. Be friendly, professional, and empathetic
-2. Answer questions based on the service information provided
-3. If you don't know the answer, acknowledge that and offer to escalate to a human agent
-4. For technical issues, provide step-by-step troubleshooting when possible
-5. Suggest relevant related services when appropriate, but don't be pushy
-6. Keep responses concise but complete
-
-Remember, your goal is to resolve the customer's issue efficiently while providing a positive experience.`,
-	maxTokens: 500,
-	temperature: 0.7,
-	serviceSummaryPrompt:
-		"Here's a summary of all our services that you can use to answer customer questions:",
-};
-
-// Read service descriptions from file
-export function loadServiceDescriptions(
-	filePath: string
-): ServiceDescription[] {
-	try {
-		const data = fs.readFileSync(filePath, "utf8");
-		return JSON.parse(data);
-	} catch (error) {
-		console.error("Error loading service descriptions:", error);
-		return [];
-	}
-}
-
-// Prepare services information for the AI context
-export function prepareServicesContext(services: ServiceDescription[]): string {
-	let context = botConfig.serviceSummaryPrompt + "\n\n";
-
-	services.forEach((service) => {
-		context += `SERVICE: ${service.name}\n`;
-		context += `DESCRIPTION: ${service.description}\n`;
-
-		context += "FEATURES:\n";
-		service.features.forEach((feature: string) => {
-			context += `- ${feature}\n`;
-		});
-
-		if (service.commonIssues && service.commonIssues.length > 0) {
-			context += "COMMON ISSUES AND SOLUTIONS:\n";
-			service.commonIssues.forEach((issue: string) => {
-				context += `- ${issue}\n`;
-			});
-		}
-
-		if (service.pricing) {
-			context += `PRICING: ${service.pricing}\n`;
-		}
-
-		context += "\n";
-	});
-
-	return context;
-}
 
 export async function chat(
 	messages: ChatMessage[],
@@ -88,7 +26,6 @@ export async function chat(
 			servicesContext
 		);
 
-		// Add the enhanced system prompt
 		const systemMessageIndex = messages.findIndex(
 			(msg) => msg.role === "system"
 		);
@@ -111,12 +48,40 @@ export async function chat(
 			messages: messages,
 			max_tokens: botConfig.maxTokens,
 			temperature,
+			tools: functions.map((func) => ({type: "function", function: func})),
+			tool_choice: "auto",
 		});
-
-		return (
+		// Process the response
+		let result: string =
 			response.choices[0].message?.content ||
-			"I'm sorry, I couldn't generate a response at this time."
-		);
+			"I'm sorry, I couldn't generate a response at this time.";
+
+		if (response.choices[0].message?.tool_calls) {
+			// The model wants to call a function
+			const tool_calls = response.choices[0].message.tool_calls;
+			const functionResult = await executeFunction(tool_calls);
+
+			messages.push(response.choices[0].message as ChatMessage);
+			// Add the function result to the messages
+			messages.push({
+				role: "tool",
+				tool_call_id: tool_calls[0].id,
+				content: JSON.stringify(functionResult),
+			});
+
+			// Make a follow-up request to the API with the function result
+			const secondResponse = await openai.chat.completions.create({
+				model: config.openaiModel,
+				messages: messages,
+				max_tokens: botConfig.maxTokens,
+				temperature,
+			});
+
+			result =
+				secondResponse.choices[0].message?.content ||
+				"I processed your request but couldn't generate a final response.";
+		}
+		return result;
 	} catch (error) {
 		console.error("Error communicating with AI service:", error);
 		return "I'm experiencing technical difficulties. Please try again later.";
