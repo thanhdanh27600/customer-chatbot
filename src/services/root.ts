@@ -1,12 +1,12 @@
 import OpenAI from "openai";
 import {botConfig, config} from "../utils/config";
-import {executeFunction, functions} from "../utils/functions";
+import {executeFunction, functions} from "../utils/tools_call";
 import {ChatMessage} from "../utils/types";
 import {
 	detectScenarioType,
 	getEnhancedSystemPrompt,
 	getTemperatureForScenario,
-} from "./optimized-prompts";
+} from "./optimized_prompts";
 
 const openai = new OpenAI({
 	baseURL: config.openaiBaseUrl,
