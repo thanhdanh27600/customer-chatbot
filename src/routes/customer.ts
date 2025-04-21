@@ -1,8 +1,8 @@
 import {Request, Response, Router} from "express";
-import {servicesContext} from "../services/context";
-import {chat} from "../services/root";
-import {botConfig} from "../utils/config";
-import {ChatMessage} from "../utils/types";
+import {servicesContext} from "../services/customer-chatbot/context";
+import {chat} from "../services/customer-chatbot/root";
+import {ChatMessage} from "../types/common";
+import {customerBotConfig} from "../utils/config";
 
 const router = Router();
 
@@ -19,7 +19,7 @@ router.post("/", async (req: Request, res: Response) => {
 		// Initialize conversation history for this session if it doesn't exist
 		if (!conversationHistoryStore.has(sessionId)) {
 			conversationHistoryStore.set(sessionId, [
-				{role: "system", content: botConfig.systemPrompt},
+				{role: "system", content: customerBotConfig.systemPrompt},
 			]);
 		}
 

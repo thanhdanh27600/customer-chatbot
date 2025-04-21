@@ -1,35 +1,6 @@
 import OpenAI from "openai";
-
-export interface FunctionParameter {
-	type: string;
-	description?: string;
-	enum?: string[];
-	items?: {
-		type: string;
-	};
-}
-
-export interface FunctionDefinition {
-	name: string;
-	description: string;
-	parameters: {
-		type: string;
-		properties: Record<string, FunctionParameter>;
-		required?: string[];
-	};
-}
-
-export interface FunctionCall {
-	name: string;
-	arguments: string;
-}
-
-export interface FunctionResult {
-	[key: string]: any;
-	error?: string;
-}
-
-export type FunctionHandler = (args: any) => Promise<FunctionResult>;
+import {FunctionDefinition} from "openai/resources/shared";
+import {FunctionHandler, FunctionResult} from "../../types/common";
 
 export const functions: FunctionDefinition[] = [
 	{

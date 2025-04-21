@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import {BotConfig} from "./types";
+import {BotConfig} from "../types/common";
 
 dotenv.config();
 
@@ -10,7 +10,7 @@ export const config = {
 	openaiBaseUrl: process.env.OPENAI_BASE_URL,
 };
 
-export const botConfig: BotConfig = {
+export const customerBotConfig: BotConfig = {
 	systemPrompt: `You are a helpful customer support agent for our company. 
 Your goal is to provide clear, concise, and accurate information about our services and help customers with their issues.
 
@@ -25,6 +25,16 @@ When responding to customers:
 Remember, your goal is to resolve the customer's issue efficiently while providing a positive experience.`,
 	maxTokens: 500,
 	temperature: 0.7,
-	serviceSummaryPrompt:
+	summaryPrompt:
 		"Here's a summary of all our services that you can use to answer customer questions:",
 };
+
+export const familyBotConfig = (familyContext: string): BotConfig => ({
+	systemPrompt: `Hôm nay là ${new Date().toISOString()}. Bạn là trợ lý hữu ích với kiến thức về một gia đình cụ thể. Đây là thông tin gia đình để sử dụng làm ngữ cảnh:\n\n${familyContext}
+Khi trả lời:
+- Trả lời ngắn gọn bằng tiếng Việt, chú ý chính xác về ngày sinh nhật và ngày giỗ (ngày mất)
+- Nếu đã mất, chỉ nhớ đến ngày giỗ của họ
+- Nếu không biết hoặc không có thông tin, hãy nói "Tôi không biết"`,
+	maxTokens: 500,
+	temperature: 0.7,
+});

@@ -1,12 +1,12 @@
 import OpenAI from "openai";
-import {botConfig, config} from "../utils/config";
-import {executeFunction, functions} from "../utils/tools_call";
-import {ChatMessage} from "../utils/types";
+import {ChatMessage} from "../../types/common";
+import {config, customerBotConfig} from "../../utils/config";
 import {
 	detectScenarioType,
 	getEnhancedSystemPrompt,
 	getTemperatureForScenario,
 } from "./optimized_prompts";
+import {executeFunction, functions} from "./tools_call";
 
 const openai = new OpenAI({
 	baseURL: config.openaiBaseUrl,
@@ -21,7 +21,7 @@ export async function chat(
 	try {
 		// Get the appropriate enhanced prompt based on user input
 		const enhancedSystemPrompt = getEnhancedSystemPrompt(
-			botConfig.systemPrompt,
+			customerBotConfig.systemPrompt,
 			userInput,
 			servicesContext
 		);
@@ -46,7 +46,7 @@ export async function chat(
 		const response = await openai.chat.completions.create({
 			model: config.openaiModel,
 			messages: messages,
-			max_tokens: botConfig.maxTokens,
+			max_tokens: customerBotConfig.maxTokens,
 			temperature,
 			tools: functions.map((func) => ({type: "function", function: func})),
 			tool_choice: "auto",
@@ -73,7 +73,7 @@ export async function chat(
 			const secondResponse = await openai.chat.completions.create({
 				model: config.openaiModel,
 				messages: messages,
-				max_tokens: botConfig.maxTokens,
+				max_tokens: customerBotConfig.maxTokens,
 				temperature,
 			});
 

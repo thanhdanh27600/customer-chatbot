@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import {botConfig} from "../utils/config";
-import {ServiceDescription} from "../utils/types";
+import {ServiceDescription} from "../../types/common";
+import {customerBotConfig} from "../../utils/config";
 
 // Read service descriptions from file
 export function loadServiceDescriptions(
@@ -18,7 +18,7 @@ export function loadServiceDescriptions(
 
 // Prepare services information for the AI context
 export function prepareServicesContext(services: ServiceDescription[]): string {
-	let context = botConfig.serviceSummaryPrompt + "\n\n";
+	let context = customerBotConfig.summaryPrompt + "\n\n";
 
 	services.forEach((service) => {
 		context += `SERVICE: ${service.name}\n`;
@@ -47,7 +47,9 @@ export function prepareServicesContext(services: ServiceDescription[]): string {
 }
 
 // Load service descriptions
-const services = loadServiceDescriptions(path.join(__dirname, "services.json"));
+const services = loadServiceDescriptions(
+	path.resolve("src/data/services.json")
+);
 if (services.length === 0) {
 	console.error("No services loaded. Please check your services.json file.");
 	process.exit(1);

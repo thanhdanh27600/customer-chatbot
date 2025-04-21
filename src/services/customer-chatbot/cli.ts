@@ -1,8 +1,8 @@
 import * as readline from "readline";
-import {servicesContext} from "./services/context";
-import {chat} from "./services/root";
-import {botConfig} from "./utils/config";
-import {ChatMessage} from "./utils/types";
+import {ChatMessage} from "../../types/common";
+import {customerBotConfig} from "../../utils/config";
+import {servicesContext} from "./context";
+import {chat} from "./root";
 
 // Main function to run the customer support bot
 async function main() {
@@ -10,7 +10,7 @@ async function main() {
 
 	// Initialize conversation history
 	const conversationHistory: ChatMessage[] = [
-		{role: "system", content: botConfig.systemPrompt},
+		{role: "system", content: customerBotConfig.systemPrompt},
 	];
 
 	// Set up readline interface for CLI chat

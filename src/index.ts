@@ -1,5 +1,5 @@
 import express from "express";
-import chatRoutes from "./routes/chat";
+import customerRoutes from "./routes/customer";
 import {config} from "./utils/config";
 
 const app = express();
@@ -8,7 +8,8 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use("/api/chat", chatRoutes);
+app.use("/api/customer", customerRoutes);
+app.use("/api/family", customerRoutes);
 
 // Health check route
 app.get("/health", (req, res) => {
