@@ -1,5 +1,6 @@
 import express from "express";
 import customerRoutes from "./routes/customer";
+import familyRoutes from "./routes/family";
 import {config} from "./utils/config";
 
 const app = express();
@@ -9,7 +10,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/customer", customerRoutes);
-app.use("/api/family", customerRoutes);
+app.use("/api/family", familyRoutes);
 
 // Health check route
 app.get("/health", (req, res) => {
