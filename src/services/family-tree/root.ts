@@ -1,6 +1,6 @@
 import {FamilyContextManager} from "./context";
 
-const paths = ["src/data/family-danh.json"];
+const paths = ["src/data/family.json"];
 
 export async function chat(userInput: string): Promise<string> {
 	try {
