@@ -1,0 +1,59 @@
+[
+	{
+		"id": "cloud-storage",
+		"name": "CloudStore Pro",
+		"description": "Secure cloud storage solution for businesses with advanced file management and sharing capabilities.",
+		"features": [
+			"End-to-end encryption for all files",
+			"Team collaboration tools with fine-grained permissions",
+			"Automatic version history (30 days)",
+			"Cross-platform sync across all devices",
+			"Admin dashboard with usage analytics"
+		],
+		"commonIssues": [
+			"Sync issues: Try signing out and back in on all devices",
+			"Upload failures: Check your internet connection and file size limits",
+			"Permission errors: Contact your team admin to verify access rights",
+			"Mobile app crashes: Ensure you're using the latest version"
+		],
+		"pricing": "Starting at $8.99/user/month with a 14-day free trial"
+	},
+	{
+		"id": "email-marketing",
+		"name": "CampaignMaster",
+		"description": "All-in-one email marketing platform for creating, sending, and analyzing marketing campaigns.",
+		"features": [
+			"Drag-and-drop email builder",
+			"Contact list segmentation and management",
+			"A/B testing capabilities",
+			"Detailed analytics dashboard",
+			"Automated email sequences",
+			"Integration with CRM systems"
+		],
+		"commonIssues": [
+			"Low delivery rates: Check your sender reputation and follow best practices",
+			"Integration errors: Verify API keys and connection settings",
+			"Template display issues: Use our preview tool to test across email clients"
+		],
+		"pricing": "Plans from $29/month based on subscriber count"
+	},
+	{
+		"id": "helpdesk",
+		"name": "SupportHub",
+		"description": "Customer support ticket management system with omnichannel support capabilities.",
+		"features": [
+			"Unified inbox for email, chat, and social media inquiries",
+			"Automated ticket routing and assignment",
+			"Knowledge base integration",
+			"SLA monitoring and alerts",
+			"Customer satisfaction surveys",
+			"Reporting and analytics"
+		],
+		"commonIssues": [
+			"Email notifications not being received: Check spam filters and notification settings",
+			"Slow dashboard loading: Clear browser cache or try our desktop app",
+			"Integration with other tools: Check our API documentation"
+		],
+		"pricing": "Basic plan: $19/agent/month, Premium plan: $49/agent/month"
+	}
+]

@@ -1,0 +1,144 @@
+{
+	"family": {
+		"name": "Gia đình Smith",
+		"members": [
+			{
+				"id": "john_smith",
+				"name": "John Smith",
+				"birthDate": "1960-05-15",
+				"deathDate": null,
+				"relationships": [
+					{"type": "vợ/chồng", "with": "mary_smith"},
+					{"type": "cha/mẹ", "of": ["michael_smith", "emily_smith"]}
+				],
+				"bio": "Trụ cột gia đình, làm việc như một kỹ sư"
+			},
+			{
+				"id": "mary_smith",
+				"name": "Mary Smith",
+				"birthDate": "1962-08-23",
+				"deathDate": null,
+				"relationships": [
+					{"type": "vợ/chồng", "with": "john_smith"},
+					{"type": "cha/mẹ", "of": ["michael_smith", "emily_smith"]}
+				],
+				"bio": "Làm việc như một giáo viên, thích làm vườn"
+			},
+			{
+				"id": "michael_smith",
+				"name": "Michael Smith",
+				"birthDate": "1990-03-12",
+				"deathDate": null,
+				"relationships": [
+					{"type": "con", "of": ["john_smith", "mary_smith"]},
+					{"type": "anh/chị/em", "of": ["emily_smith"]},
+					{"type": "vợ/chồng", "with": "jennifer_smith"},
+					{"type": "cha/mẹ", "of": ["ethan_smith", "olivia_smith"]}
+				],
+				"bio": "Lập trình viên phần mềm, thích đi leo núi"
+			},
+			{
+				"id": "emily_smith",
+				"name": "Emily Smith",
+				"birthDate": "1992-11-28",
+				"deathDate": null,
+				"relationships": [
+					{"type": "con", "of": ["john_smith", "mary_smith"]},
+					{"type": "anh/chị/em", "of": ["michael_smith"]},
+					{"type": "vợ/chồng", "with": "daniel_johnson"},
+					{"type": "cha/mẹ", "of": ["sophia_johnson"]}
+				],
+				"bio": "Bác sĩ, đam mê du lịch"
+			},
+			{
+				"id": "jennifer_smith",
+				"name": "Jennifer Smith",
+				"birthDate": "1991-07-16",
+				"deathDate": null,
+				"relationships": [
+					{"type": "vợ/chồng", "with": "michael_smith"},
+					{"type": "cha/mẹ", "of": ["ethan_smith", "olivia_smith"]}
+				],
+				"bio": "Quản lý tiếp thị, thích nhiếp ảnh"
+			},
+			{
+				"id": "daniel_johnson",
+				"name": "Daniel Johnson",
+				"birthDate": "1991-02-05",
+				"deathDate": null,
+				"relationships": [
+					{"type": "vợ/chồng", "with": "emily_smith"},
+					{"type": "cha/mẹ", "of": ["sophia_johnson"]}
+				],
+				"bio": "Kiến trúc sư, thích chơi guitar"
+			},
+			{
+				"id": "ethan_smith",
+				"name": "Ethan Smith",
+				"birthDate": "2018-09-03",
+				"deathDate": null,
+				"relationships": [
+					{"type": "con", "of": ["michael_smith", "jennifer_smith"]},
+					{"type": "anh/chị/em", "of": ["olivia_smith"]},
+					{"type": "cháu", "of": ["john_smith", "mary_smith"]}
+				],
+				"bio": "Học sinh tiểu học, thích khủng long"
+			},
+			{
+				"id": "olivia_smith",
+				"name": "Olivia Smith",
+				"birthDate": "2020-12-17",
+				"deathDate": null,
+				"relationships": [
+					{"type": "con", "of": ["michael_smith", "jennifer_smith"]},
+					{"type": "anh/chị/em", "of": ["ethan_smith"]},
+					{"type": "cháu", "of": ["john_smith", "mary_smith"]}
+				],
+				"bio": "Học sinh mẫu giáo, thích vẽ"
+			},
+			{
+				"id": "sophia_johnson",
+				"name": "Sophia Johnson",
+				"birthDate": "2019-06-21",
+				"deathDate": null,
+				"relationships": [
+					{"type": "con", "of": ["emily_smith", "daniel_johnson"]},
+					{"type": "cháu", "of": ["john_smith", "mary_smith"]},
+					{"type": "anh/chị/em họ", "of": ["ethan_smith", "olivia_smith"]}
+				],
+				"bio": "Học sinh mẫu giáo, thích nhảy múa"
+			},
+			{
+				"id": "robert_smith",
+				"name": "Robert Smith",
+				"birthDate": "1935-11-10",
+				"deathDate": "2022-07-04",
+				"relationships": [
+					{"type": "cha/mẹ", "of": ["john_smith"]},
+					{"type": "ông/bà", "of": ["michael_smith", "emily_smith"]},
+					{
+						"type": "cụ",
+						"of": ["ethan_smith", "olivia_smith", "sophia_johnson"]
+					}
+				],
+				"bio": "Quân nhân đã nghỉ hưu, trưởng lão trong gia đình"
+			},
+			{
+				"id": "elizabeth_smith",
+				"name": "Elizabeth Smith",
+				"birthDate": "1937-03-22",
+				"deathDate": "2020-01-15",
+				"relationships": [
+					{"type": "vợ/chồng", "with": "robert_smith"},
+					{"type": "cha/mẹ", "of": ["john_smith"]},
+					{"type": "ông/bà", "of": ["michael_smith", "emily_smith"]},
+					{
+						"type": "cụ",
+						"of": ["ethan_smith", "olivia_smith", "sophia_johnson"]
+					}
+				],
+				"bio": "Nguyên là giáo viên, thích đan len"
+			}
+		]
+	}
+}
