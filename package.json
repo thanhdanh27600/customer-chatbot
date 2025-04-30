@@ -5,6 +5,7 @@
 		"customer-cli": "tsx src/services/customer-chatbot/cli.ts",
 		"family-cli": "tsx src/services/family-tree/cli.ts",
 		"build": "tsc && npm run data",
+		"tsc": "tsc",
 		"data": "cp -R src/data dist/data",
 		"start": "node dist/index.js",
 		"dev": "nodemon --exec tsx src/index.ts",
@@ -21,9 +22,11 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"axios": "^1.9.0",
 		"dotenv": "^16.5.0",
 		"express": "^5.1.0",
 		"openai": "^4.95.0",
+		"pocketbase": "^0.26.0",
 		"typescript": "^5.8.3"
 	},
 	"description": "",

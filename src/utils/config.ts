@@ -8,6 +8,13 @@ export const config = {
 	openaiApiKey: process.env.OPENAI_API_KEY,
 	openaiModel: process.env.OPENAI_MODEL as string,
 	openaiBaseUrl: process.env.OPENAI_BASE_URL,
+	pocketBaseUrl: process.env.POCKETBASE_URL,
+	pocketBaseAdminToken: process.env.POCKETBASE_ADMIN_TOKEN as string,
+	chatWebhookUrl: process.env.CHAT_WEBHOOK_URL,
+};
+
+export const HEADER = {
+	orgId: "org-id",
 };
 
 export const customerBotConfig: BotConfig = {
