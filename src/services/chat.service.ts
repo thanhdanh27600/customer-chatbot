@@ -6,6 +6,13 @@ export const fetchChat = async (id: string, {expand}: {expand: string}) => {
 	return pb.collection<Chat>(collections.chat).getOne(id, {expand});
 };
 
+export const getMessages = async (chatId: string) => {
+	return pb.collection("messages").getList(1, 20, {
+		filter: `Chat = "${chatId}"`,
+		sort: "-created",
+	});
+};
+
 export const searchGuestChat = async ({
 	guestId,
 	orgId,

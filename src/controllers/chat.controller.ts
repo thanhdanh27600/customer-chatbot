@@ -1,5 +1,9 @@
 import {Response} from "express";
-import {openChatChannel, searchGuestChat} from "../services/chat.service";
+import {
+	getMessages,
+	openChatChannel,
+	searchGuestChat,
+} from "../services/chat.service";
 import {RequestWithOrg} from "../types/request";
 import {badRequest, notFound, successRequest} from "../utils/error";
 
@@ -29,7 +33,37 @@ const openChannel = async (request: RequestWithOrg, response: Response) => {
 	}
 };
 
+const findMessages = async (request: RequestWithOrg, response: Response) => {
+	const body = request.body as {
+		chatId: string;
+	};
+	const {chatId} = body;
+	try {
+		const messages = await getMessages(chatId);
+		return successRequest(response, messages);
+	} catch (error) {
+		return badRequest(response);
+	}
+};
+
+const sendMessage = async (request: RequestWithOrg, response: Response) => {
+	const body = request.body as {
+		chatId: string;
+		message: string;
+		role: string;
+	};
+	const {chatId, message, role} = body;
+	try {
+		const messages = await getMessages(chatId);
+		return successRequest(response, messages);
+	} catch (error) {
+		return badRequest(response);
+	}
+};
+
 export const chatController = {
 	findChat,
 	openChannel,
+	findMessages,
+	sendMessage,
 };

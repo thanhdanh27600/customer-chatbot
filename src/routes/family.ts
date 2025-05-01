@@ -1,5 +1,5 @@
 import {Request, Response, Router} from "express";
-import {chat} from "../services/family-tree/root";
+import {chat} from "../services/ai/family-tree/root";
 
 const router = Router();
 

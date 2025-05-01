@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import {ServiceDescription} from "../../types/common";
-import {customerBotConfig} from "../../utils/config";
+import {ServiceDescription} from "../../../types/common";
+import {customerBotConfig} from "../../../utils/config";
 
 // Read service descriptions from file
 export function loadServiceDescriptions(

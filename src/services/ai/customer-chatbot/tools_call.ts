@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import {FunctionDefinition} from "openai/resources/shared";
-import {FunctionHandler, FunctionResult} from "../../types/common";
+import {FunctionHandler, FunctionResult} from "../../../types/common";
 
 export const functions: FunctionDefinition[] = [
 	{

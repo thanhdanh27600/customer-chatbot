@@ -1,6 +1,6 @@
 import OpenAI from "openai";
-import {ChatMessage} from "../../types/common";
-import {config, customerBotConfig} from "../../utils/config";
+import {ChatMessage} from "../../../types/common";
+import {config, customerBotConfig} from "../../../utils/config";
 import {
 	detectScenarioType,
 	getEnhancedSystemPrompt,

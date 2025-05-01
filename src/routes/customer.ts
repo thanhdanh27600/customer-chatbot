@@ -1,6 +1,6 @@
 import {Request, Response, Router} from "express";
-import {servicesContext} from "../services/customer-chatbot/context";
-import {chat} from "../services/customer-chatbot/root";
+import {servicesContext} from "../services/ai/customer-chatbot/context";
+import {chat} from "../services/ai/customer-chatbot/root";
 import {ChatMessage} from "../types/common";
 import {customerBotConfig} from "../utils/config";
 

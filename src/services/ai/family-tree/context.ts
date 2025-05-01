@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import {OpenAI} from "openai";
 import * as path from "path";
-import {FamilyData, FamilyMember} from "../../types/family";
-import {config, familyBotConfig} from "../../utils/config";
+import {FamilyData, FamilyMember} from "../../../types/family";
+import {config, familyBotConfig} from "../../../utils/config";
 
 export class FamilyContextManager {
 	private familyData: FamilyData;

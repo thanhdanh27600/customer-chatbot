@@ -1,6 +1,6 @@
 import * as readline from "readline";
-import {ChatMessage} from "../../types/common";
-import {customerBotConfig} from "../../utils/config";
+import {ChatMessage} from "../../../types/common";
+import {customerBotConfig} from "../../../utils/config";
 import {servicesContext} from "./context";
 import {chat} from "./root";
 
